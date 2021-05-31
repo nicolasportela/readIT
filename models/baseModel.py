@@ -22,11 +22,15 @@ class BaseModel(Base):
     def __init__(self):
         """Initialization of the base model"""
         self.IdUser = str(uuid4())
+
+        """
+        In memorium our first user:
+
         self.FirstName = "Adan"
         self.LastName = "Son of God"
         self.Mail = "contactos@readit.uy"
         self.City = "Paradise"
-
+        """
     # ¿revisar cómo visualizaremos los objetos?
     def __str__(self):
         """String representation of the BaseModel class"""
