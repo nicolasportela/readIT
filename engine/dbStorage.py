@@ -4,7 +4,7 @@ from os import environ
 from models.baseModel import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
-
+from models.users import User
 
 class DBStorage:
     """Database Storage"""
@@ -33,19 +33,19 @@ class DBStorage:
 
     def all(self, cls=None):
         """Return a dictionary with all objects depending on class name"""
-        classes = {"Users": Users, "Books": Books, "Shared": Shared}
+        classes = {"Users": User}
         if not self.__session:
             self.reload()
         new_dict = {}
         if cls:
             objs = self.__session.query(cls).all()
             for obj in objs:
-                key = obj.__class__.__name__ + '.' + obj.id
-                new_dict[key] = obj
+                key = obj.__class__.__name__ + '.' + obj.IdUser
+                new_dict[key] = obj.__str__()
         else:
             for clss in classes:
                 objs = self.__session.query(classes[clss]).all()
                 for obj in objs:
-                    key = obj.__class__.__name__ + '.' + obj.id
-                    new_dict[key] = obj
+                    key = obj.__class__.__name__ + '.' + obj.IdUser
+                    new_dict[key] = obj.__str__()
         return (new_dict)
