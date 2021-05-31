@@ -30,3 +30,22 @@ class DBStorage:
     def save(self):
         """Commit current changes in database"""
         self.__session.commit()
+
+    def all(self, cls=None):
+        """Return a dictionary with all objects depending on class name"""
+        classes = {"Users": Users, "Books": Books, "Shared": Shared}
+        if not self.__session:
+            self.reload()
+        new_dict = {}
+        if cls:
+            objs = self.__session.query(cls).all()
+            for obj in objs:
+                key = obj.__class__.__name__ + '.' + obj.id
+                new_dict[key] = obj
+        else:
+            for clss in classes:
+                objs = self.__session.query(classes[clss]).all()
+                for obj in objs:
+                    key = obj.__class__.__name__ + '.' + obj.id
+                    new_dict[key] = obj
+        return (new_dict)
