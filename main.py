@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 from models.baseModel import BaseModel
+from engine.dbStorage import DBStorage
 
+engine = DBStorage()
+engine.reload()
 prueba = BaseModel()
-prueba1 = prueba.to_dict()
-
-print(prueba)
-print(prueba.id)
-print(prueba1)
+engine.new(prueba)
+engine.save()
