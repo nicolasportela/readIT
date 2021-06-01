@@ -34,7 +34,7 @@ class DBStorage:
 
     def all(self, cls=None):
         """Return a dictionary with all objects depending on class name"""
-        classes = {"Users": models.users.User}
+        classes = {"Users": models.users.User, "Books": models.books.Book}
         if not self.__session:
             self.reload()
         new_dict = {}
