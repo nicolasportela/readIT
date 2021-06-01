@@ -2,10 +2,9 @@
 """ Create connection using SQLAlchemy with the database"""
 import models
 from os import environ
-# from models.baseModel import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
-# from models.users import User
+
 
 class DBStorage:
     """Database Storage"""
@@ -34,7 +33,7 @@ class DBStorage:
 
     def all(self, cls=None):
         """Return a dictionary with all objects depending on class name"""
-        classes = {"Users": models.users.User, "Books": models.books.Book}
+        classes = {"Users": models.users.User, "Books": models.books.Book, "Shared": models.shared.Shared}
         if not self.__session:
             self.reload()
         new_dict = {}

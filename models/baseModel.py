@@ -9,13 +9,13 @@ from engine.dbStorage import DBStorage
 
 Base = declarative_base()
 
+
 class BaseModel:
     """Class that defines all common attributes/methods
     for other classes will inherit"""
 
     """
     In memorium our first user:
-    
     self.FirstName = "Adan"
     self.LastName = "Son of God"
     self.Mail = "contactos@readit.uy"
@@ -28,6 +28,7 @@ class BaseModel:
         Id = 'Id' + self.__class__.__name__
         return "[{:s}] ({:s}) {}".format(self.__class__.__name__, eval('self.{}'.format(Id)),
                                          self.__dict__)
+
     def save(self):
         """Create new register in the db"""
         DBStorage.new(self)

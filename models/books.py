@@ -4,6 +4,8 @@ from datetime import datetime
 from models.baseModel import BaseModel, Base
 from sqlalchemy import Column, String, DateTime
 from uuid import uuid4
+from sqlalchemy.orm import relationship
+from models.shared import Shared
 
 
 class Book(BaseModel, Base):
@@ -16,7 +18,6 @@ class Book(BaseModel, Base):
     ISBN = Column(String(30))
     Status = Column(String(30), nullable=False)
     Uploaded = Column(DateTime, default=datetime.utcnow, nullable=False)
-
 
     def __init__(self, *args):
         """initializes book"""
