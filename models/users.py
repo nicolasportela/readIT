@@ -3,6 +3,7 @@
 from models.baseModel import BaseModel, Base
 from sqlalchemy import Column, String
 from uuid import uuid4
+from sqlalchemy.orm import relationship
 
 
 class User(BaseModel, Base):
@@ -26,4 +27,3 @@ class User(BaseModel, Base):
             self.Mail = args[0].get('Mail')
             self.Password = args[0].get('Password')
             self.City = args[0].get('City')
-
