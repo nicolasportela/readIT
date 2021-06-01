@@ -24,10 +24,6 @@ class User(BaseModel, Base):
             self.LastName = args[0].get('LastName')
             self.Phone = args[0].get('Phone')
             self.Mail = args[0].get('Mail')
-            self.Passwrd = args[0].get('Password')
+            self.Password = args[0].get('Password')
             self.City = args[0].get('City')
 
-    def __str__(self):
-        """String representation of the BaseModel class"""
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.IdUser,
-                                         self.__dict__)
