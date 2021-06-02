@@ -17,13 +17,12 @@ class User(BaseModel, Base):
     Password = Column(String(50), nullable=False)
     City = Column(String(50), nullable=False)
 
-    def __init__(self, *args):
+    def __init__(self, **kwargs):
         """initializes user"""
         self.IdUser = str(uuid4())
-        if args:
-            self.FirstName = args[0].get('FirstName')
-            self.LastName = args[0].get('LastName')
-            self.Phone = args[0].get('Phone')
-            self.Mail = args[0].get('Mail')
-            self.Password = args[0].get('Password')
-            self.City = args[0].get('City')
+        self.FirstName = kwargs.get('FirstName')
+        self.LastName = kwargs.get('LastName')
+        self.Phone = kwargs.get('Phone')
+        self.Mail = kwargs.get('Mail')
+        self.Password = kwargs.get('Password')
+        self.City = kwargs.get('City')

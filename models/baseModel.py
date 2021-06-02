@@ -14,15 +14,6 @@ class BaseModel:
     """Class that defines all common attributes/methods
     for other classes will inherit"""
 
-    """
-    In memorium our first user:
-    self.FirstName = "Adan"
-    self.LastName = "Son of God"
-    self.Mail = "contactos@readit.uy"
-    self.Password = "ABC1234"
-    self.City = "Paradise"
-    """
-
     def __str__(self):
         """String representation of the BaseModel class"""
         Id = 'Id' + self.__class__.__name__

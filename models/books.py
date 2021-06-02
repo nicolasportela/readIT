@@ -19,14 +19,13 @@ class Book(BaseModel, Base):
     Status = Column(String(30), nullable=False)
     Uploaded = Column(DateTime, default=datetime.utcnow, nullable=False)
 
-    def __init__(self, *args):
+    def __init__(self, **kwargs):
         """initializes book"""
         self.IdBook = str(uuid4())
-        if args:
-            self.Authors = args[0].get('Authors')
-            self.Title = args[0].get('Title')
-            self.Description = args[0].get('Description')
-            self.ISBN = args[0].get('ISBN')
-            self.Status = args[0].get('Status')
-            now = datetime.now()
-            self.Uploaded = now.strftime('%Y-%m-%d %H:%M:%S')
+        self.Authors = kwargs.get('Authors')
+        self.Title = kwargs.get('Title')
+        self.Description = kwargs.get('Description')
+        self.ISBN = kwargs.get('ISBN')
+        self.Status = kwargs.get('Status')
+        now = datetime.now()
+        self.Uploaded = now.strftime('%Y-%m-%d %H:%M:%S')
