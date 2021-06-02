@@ -8,7 +8,7 @@ from models.shared import Shared
 db = DBStorage()
 print(db.all())
 
-intercambio = {'IdGiver': '02f87f75-1a2e-479c-8f97-24ded7d15045', 'IdReceiver': '3924aaa9-d7f0-4d18-94dd-d43dee975e60', 'IdBook': '6027b4f2-3dc0-4579-b70e-c8d04d825812', 'StatusRequest': 'pending'}
+intercambio = {'IdGiver': '63f3dbe1-c743-40fa-ad96-831be835bb6f', 'IdReceiver': '3f2a0252-fb9d-4eb7-a1c5-15e05a4dec3f', 'IdBook': 'fc90a194-1967-4024-a3da-c5d0b98cd1c8', 'StatusRequest': 'pending'}
 prueba = Shared(intercambio)
 print(prueba)
 db.new(prueba)
