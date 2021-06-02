@@ -21,13 +21,12 @@ class Shared(BaseModel, Base):
     IdReceivers = relationship('User', foreign_keys=[IdReceiver])
     IdBooks = relationship('Book', foreign_keys=[IdBook])
 
-    def __init__(self, *args):
+    def __init__(self, **kwargs):
         """initializes Shared"""
         self.IdShared = str(uuid4())
-        if args:
-            self.IdGiver = args[0].get('IdGiver')
-            self.IdReceiver = args[0].get('IdReceiver')
-            self.IdBook = args[0].get('IdBook')
-            now = datetime.now()
-            self.Datashared = now.strftime('%Y-%m-%d %H:%M:%S')
-            self.StatusRequest = args[0].get('StatusRequest')
+        self.IdGiver = kwargs.get('IdGiver')
+        self.IdReceiver = kwargs.get('IdReceiver')
+        self.IdBook = kwargs.get('IdBook')
+        now = datetime.now()
+        self.Datashared = now.strftime('%Y-%m-%d %H:%M:%S')
+        self.StatusRequest = kwargs.get('StatusRequest')

@@ -10,11 +10,11 @@ adan = {'FirstName':'Adan', 'LastName':'Son ff God', 'Mail':'adancontacto@readIT
 book1984 = {'Authors':'George Orwell', 'Title':'1984', 'Description':'Love this novel!', 'Status':'Requested'}
 
 print("Create instants User...")
-user1 = User(eva)
-user2 = User(adan)
+user1 = User(**eva)
+user2 = User(**adan)
 
 print("Create instants Book...")
-book1 = Book(book1984)
+book1 = Book(**book1984)
 
 print("Show representations...")
 
