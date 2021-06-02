@@ -24,7 +24,6 @@ class TestUser(unittest.TestCase):
 
     def test_to_dict_values(self):
         """test that values in dict returned from to_dict are correct"""
-        t_format = "%Y-%m-%dT%H:%M:%S"
         eva = {'FirstName': 'Eva', 'LastName': 'DaughterOfGod', 'Mail': 'evacontacto@readIT', 'Password': 'Hola', 'Phone': '59899101010', 'City': 'Paradise'}
         u = User(**eva)
         new_d = u.to_dict()
