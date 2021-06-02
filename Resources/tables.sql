@@ -31,9 +31,12 @@ Uploaded DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
 -- Shared table 
 CREATE TABLE IF NOT EXISTS Shared (
 IdShared varchar(40) NOT NULL, PRIMARY KEY(IdShared),
-IdGiver varchar(40), FOREIGN KEY(IdGiver) REFERENCES Users(IdUser),
-IdReceiver varchar(40), FOREIGN KEY(IdReceiver) REFERENCES Users(IdUser),
-IdBook varchar(40), FOREIGN KEY(IdBook) REFERENCES Books(IdBook),
+IdGiver varchar(40) NOT NULL, FOREIGN KEY(IdGiver) REFERENCES Users(IdUser),	
+IdReceiver varchar(40) NOT NULL, FOREIGN KEY(IdReceiver) REFERENCES Users(IdUser),
+IdBook varchar(40) NOT NULL, FOREIGN KEY(IdBook) REFERENCES Books(IdBook),
 Datashared DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
 StatusRequest varchar(30) NOT NULL
 );
+
+
+
