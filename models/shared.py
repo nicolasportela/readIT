@@ -30,3 +30,18 @@ class Shared(BaseModel, Base):
         now = datetime.now()
         self.Datashared = now.strftime('%Y-%m-%d %H:%M:%S')
         self.StatusRequest = kwargs.get('StatusRequest')
+
+    def mailRequestConfirmation(self, userReceiver, userGiver, book):
+        """send automatic email to confirm request or book already shared"""
+        import smtplib
+        fromEmail = 'readit.uy@gmail.com'
+        username = 'readit'
+        password = 'Somoslosmejores4'
+        message1 = 'Hello {}!</br>We\'ve received your request of {}.</br>You\'ll receive within 24hrs an e-mail confirmation to contact {}'.format(userReceiver.FirstName, book.Title, userGiver.FirstName)
+        message2 = 'Hello {}!</br>Your book {} has been requested.</br>Please check your <a href="url">notification area</a> within 24hrs.'.format(userGiver.FirstName, book.Title) 
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.starttls()
+        server.login(username, password)
+        server.sendmail(fromEmail, emailReceiver, message1)
+        server.sendmail(fromEmail, emailGiver, message2)
+        server.quit()
