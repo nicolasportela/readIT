@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 """ Create connection using SQLAlchemy with the database"""
-import models
+from models.baseModel import Base
+from models.users import User
+from models.books import Book
+from models.shared import Shared
 from os import environ
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
-
 
 class DBStorage:
     """Database Storage"""
@@ -20,7 +22,7 @@ class DBStorage:
         """Load objects from database"""
         session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
-        models.baseModel.Base.metadata.create_all(self.__engine)
+        Base.metadata.create_all(self.__engine)
         self.__session = scoped_session(session_factory)
 
     def new(self, obj):
@@ -33,7 +35,7 @@ class DBStorage:
 
     def all(self, cls=None):
         """Return a dictionary with all objects depending on class name"""
-        classes = {"Users": models.users.User, "Books": models.books.Book, "Shared": models.shared.Shared}
+        classes = {"Users": User, "Books": Book, "Shared": Shared}
         if not self.__session:
             self.reload()
         new_dict = {}
@@ -51,3 +53,7 @@ class DBStorage:
                     key = obj.__class__.__name__ + '.' + eval('obj.{}'.format(IdObj))
                     new_dict[key] = obj.__str__()
         return (new_dict)
+
+    def close(self):
+        """Close Session"""
+        self.__session.remove()
