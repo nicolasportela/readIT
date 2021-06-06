@@ -16,7 +16,7 @@ class DBStorage:
     def __init__(self):
         """DBStorage constructor"""
         # password = environ('READITDBPASS')
-        self.__engine = create_engine('mysql+mysqldb://root:root@localhost/readIT_library')
+        self.__engine = create_engine('mysql+mysqldb://root:Hbtn.2021*+@localhost/readIT_library')
 
     def reload(self):
         """Load objects from database"""
@@ -53,6 +53,17 @@ class DBStorage:
                     key = obj.__class__.__name__ + '.' + eval('obj.{}'.format(IdObj))
                     new_dict[key] = obj.__str__()
         return (new_dict)
+
+    def findEmail(self, Email):
+        """ If this returns a user, then the email already exists in database """
+        if not self.__session:
+            self.reload()
+
+        #for instance in self.__session.query(User).order_by(User.Email):
+           # print(instance.Email)
+        
+        obj = self.__session.query(User).filter_by(Email=Email).first()
+        return (obj)
 
     def close(self):
         """Close Session"""
