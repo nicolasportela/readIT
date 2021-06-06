@@ -31,17 +31,30 @@ class Shared(BaseModel, Base):
         self.Datashared = now.strftime('%Y-%m-%d %H:%M:%S')
         self.StatusRequest = kwargs.get('StatusRequest')
 
-    def mailRequestConfirmation(self, userReceiver, userGiver, book):
+    def mailRequestConfirmation(userReceiver, userGiver, book):
         """send automatic email to confirm request or book already shared"""
         import smtplib
-        fromEmail = 'readit.uy@gmail.com'
-        username = 'readit'
-        password = 'Somoslosmejores4'
-        message1 = 'Hello {}!</br>We\'ve received your request of {}.</br>You\'ll receive within 24hrs an e-mail confirmation to contact {}'.format(userReceiver.FirstName, book.Title, userGiver.FirstName)
-        message2 = 'Hello {}!</br>Your book {} has been requested.</br>Please check your <a href="url">notification area</a> within 24hrs.'.format(userGiver.FirstName, book.Title) 
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
+
+        msg = MIMEMultipart()
+        msg2 = MIMEMultipart()
+        fromx = 'readit.uy@gmail.com'
+        to  = userReceiver.get('Mail')
+        to2 = userGiver.get('Mail')
+        msg = MIMEText('Hello {}!\n\nWe\'ve received your request of "{}".\nYou\'ll receive within 24hrs an e-mail confirmation to contact {}.\n\nThanks for being part of this book lovers community!\nreadIT Team'.format(userReceiver.get('FirstName'), book.get('Title'), userGiver.get('FirstName')))
+        msg['Subject'] = 'New book request'
+        msg['From'] = fromx
+        msg['To'] = to
+        msg2 = MIMEText('Hello {}!\n\nYour book "{}" has been requested.\nPlease check your notification area within 24hrs.\n\nThanks for being part of this book lovers community!\nreadIT Team'.format(userGiver.get('FirstName'), book.get('Title')))
+        msg2['Subject'] = 'New book request'
+        msg2['From'] = fromx
+        msg2['To'] = to2
+
         server = smtplib.SMTP('smtp.gmail.com:587')
         server.starttls()
-        server.login(username, password)
-        server.sendmail(fromEmail, emailReceiver, message1)
-        server.sendmail(fromEmail, emailGiver, message2)
+        server.ehlo()
+        server.login('readit.uy@gmail.com', 'password')
+        server.sendmail(fromx, to, msg.as_string())
+        server.sendmail(fromx, to2, msg2.as_string())
         server.quit()

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Create connection using SQLAlchemy with the database"""
-from models.baseModel import Base
+from models import baseModel
 from models.users import User
 from models.books import Book
 from models.shared import Shared
@@ -22,7 +22,7 @@ class DBStorage:
         """Load objects from database"""
         session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
-        Base.metadata.create_all(self.__engine)
+        baseModel.Base.metadata.create_all(self.__engine)
         self.__session = scoped_session(session_factory)
 
     def new(self, obj):

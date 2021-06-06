@@ -5,8 +5,8 @@ import models
 from uuid import uuid4
 from sqlalchemy import Column, String
 from sqlalchemy.ext.declarative import declarative_base
-import engine
-# from engine import storage
+# import engine
+# from engine.dbStorage import DBStorage
 
 Base = declarative_base()
 
@@ -20,11 +20,6 @@ class BaseModel:
         Id = 'Id' + self.__class__.__name__
         return "[{:s}] ({:s}) {}".format(self.__class__.__name__, eval('self.{}'.format(Id)),
                                          self.__dict__)
-
-    def save(self):
-        """Create new register in the db"""
-        engine.storage.new(self)
-        engine.storage.save()
 
     def to_dict(self):
         """Returns a dictionary containing all keys/values of the instance"""
