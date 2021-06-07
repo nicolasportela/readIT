@@ -18,17 +18,28 @@
 
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
-                            <a href="{{ url_for('nonAuth.index') }}" class="navbar-item">
+                            <a href="{{ url_for('auth.index') }}" class="navbar-item">
                                 Home
                             </a>
-                            <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('auth.profile') }}" class="navbar-item">
+                                Profile
+                            </a>
+                            {% endif %}
+                            {% if not current_user.is_authenticated %}
+                            <a href="{{ url_for('nonAuth.login') }}" class="navbar-item">
                                 Login
                             </a>
                             <a href="{{ url_for('auth.signup') }}" class="navbar-item">
                                 Sign Up
                             </a>
-                            
-                        </div>
+                            {% endif %}
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                                Logout
+                            </a>
+                            {% endif %}
+                        </div>                    
                     </div>
                 </div>
             </nav>

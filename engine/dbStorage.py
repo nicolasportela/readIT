@@ -8,6 +8,7 @@ from os import environ
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 
+
 class DBStorage:
     """Database Storage"""
     __engine = None
@@ -68,3 +69,15 @@ class DBStorage:
     def close(self):
         """Close Session"""
         self.__session.remove()
+
+    def findIdUser(self, IdUser):
+        """ If this returns a user, then the email already exists in database """
+        if not self.__session:
+            self.reload()
+
+        #for instance in self.__session.query(User).order_by(User.Email):
+           # print(instance.Email)
+        
+        obj = self.__session.query(User).get(int(IdUser))
+        print(obj)
+        #return (obj)

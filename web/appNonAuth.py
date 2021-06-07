@@ -42,3 +42,7 @@ def NewBook():
 @nonAuth.route('/about')
 def about():
     return "About"
+
+@nonAuth.route('/profile')
+def profile():
+    return render_template('profile.html')

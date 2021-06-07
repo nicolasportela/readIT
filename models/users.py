@@ -27,3 +27,6 @@ class User(UserMixin, BaseModel, Base):
         self.Email = kwargs.get('Email')
         self.Password = kwargs.get('Password')
         self.City = kwargs.get('City')
+
+    def get_id(self):
+        return (self.IdUser)
