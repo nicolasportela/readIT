@@ -15,7 +15,7 @@ class User(UserMixin, BaseModel, Base):
     LastName = Column(String(50), nullable=False)
     Phone = Column(String(30), nullable=False)
     Email = Column(String(50), nullable=True)
-    Password = Column(String(50), nullable=False)
+    Password = Column(String(512), nullable=False)
     City = Column(String(50), nullable=False)
 
     def __init__(self, **kwargs):

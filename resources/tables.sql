@@ -12,8 +12,8 @@ IdUser varchar(40) NOT NULL, PRIMARY KEY(IdUser),
 FirstName varchar(50) NOT NULL,
 LastName varchar(50) NOT NULL,
 Phone varchar(30),
-Mail varchar(50) NOT NULL,
-Password varchar(50) NOT NULL,
+Email varchar(50) NOT NULL,
+Password varchar(512) NOT NULL,
 City varchar(50) NOT NULL
 );
 

@@ -17,7 +17,7 @@ class DBStorage:
     def __init__(self):
         """DBStorage constructor"""
         # password = environ('READITDBPASS')
-        self.__engine = create_engine('mysql+mysqldb://root:Hbtn.2021*+@localhost/readIT_library')
+        self.__engine = create_engine('mysql+mysqldb://root:root@localhost/readIT_library')
 
     def reload(self):
         """Load objects from database"""
@@ -78,6 +78,5 @@ class DBStorage:
         #for instance in self.__session.query(User).order_by(User.Email):
            # print(instance.Email)
         
-        obj = self.__session.query(User).get(int(IdUser))
-        print(obj)
-        #return (obj)
+        obj = self.__session.query(User).get(IdUser)
+        return (obj)
