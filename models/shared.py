@@ -5,6 +5,7 @@ from models.baseModel import BaseModel, Base
 from sqlalchemy import Column, String, DateTime, ForeignKey
 from uuid import uuid4
 from sqlalchemy.orm import relationship
+from decouple import config
 
 
 class Shared(BaseModel, Base):
@@ -33,6 +34,7 @@ class Shared(BaseModel, Base):
 
     def mailRequestConfirmation(userReceiver, userGiver, book):
         """send automatic email to confirm request or book already shared"""
+        PASSWORD = config('PASSWORD')
         import smtplib
         from email.mime.multipart import MIMEMultipart
         from email.mime.text import MIMEText
@@ -54,7 +56,7 @@ class Shared(BaseModel, Base):
         server = smtplib.SMTP('smtp.gmail.com:587')
         server.starttls()
         server.ehlo()
-        server.login('readit.uy@gmail.com', 'password')
+        server.login('readit.uy@gmail.com', PASSWORD)
         server.sendmail(fromx, to, msg.as_string())
         server.sendmail(fromx, to2, msg2.as_string())
         server.quit()
