@@ -1,0 +1,17 @@
+<!-- templates/books.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h3 class="title">Books</h3>
+  {% for book in books %}
+  <article>
+    <div class="title_box">
+      <img src={{ book.Cover }}>
+      <h2>{{ book.Title }}</h2>
+    </div>
+  </article>
+  {% endfor %}
+{% endblock %}
+
+
