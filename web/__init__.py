@@ -7,7 +7,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from engine import storage
 from flask_login import LoginManager
-
+import os
 
 def create_app():
     app = Flask(__name__)

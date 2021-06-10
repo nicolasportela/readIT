@@ -6,16 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>readIT - "spread the culture"</title>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel= "stylesheet" type= "text/css" href= "../static/styles/readIT.css">
   </head>
 
   <body>
-    <section class="hero is-primary is-fullheight">
-
+    <section class="hero is-link is-fullheight">
       <div class="hero-head">
 	<nav class="navbar">
+	  <div class="navbar-brand">
+	    <a class="navbar-item" href="http://35.196.233.214">
+	      <img src="../static/images/logoGrande.png" alt="readIT logo">
+	    </a>
+	    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+	      <span aria-hidden="true"></span>
+	      <span aria-hidden="true"></span>
+	      <span aria-hidden="true"></span>
+	    </a>
+	  </div>
 	  <div class="container">
-
 	    <div id="navbarMenuHeroA" class="navbar-menu">
 	      <div class="navbar-end">
 		<a href="{{ url_for('main.index') }}" class="navbar-item">
@@ -24,6 +32,9 @@
 		{% if current_user.is_authenticated %}
 		<a href="{{ url_for('main.profile') }}" class="navbar-item">
 		  Profile
+		</a>
+		<a href="{{ url_for('main.postBook') }}" class="navbar-item">
+		  Add book
 		</a>
 		{% endif %}
 		{% if not current_user.is_authenticated %}

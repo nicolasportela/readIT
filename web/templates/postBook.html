@@ -1,0 +1,32 @@
+<!-- templates/postBook.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">Spread the culture!</h1>
+
+<div class="column is-4 is-offset-4">
+  <h3 class="subtitle">Register your book here</h3>
+  <h3 class="has-text-danger">{{ alertIsbn }}</h3>
+  <h5> Please, use only numbers</h5>
+  <div class="box">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="notification is-danger">
+      {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+    </div>
+    {% endif %}
+    {% endwith %}        
+    <form method="POST" action="/postBook">
+
+      <div class="field">
+        <div class="control">
+          <input class="input is-large" type="text" name="ISBN" placeholder="ISBN" autofocus="" required>
+        </div>
+      </div>
+      <button class="button is-block is-info is-large is-fullwidth">Add</button>
+    </form>
+  </div>
+  <h4 class="subtitle">Thank you for growing our community!</h4>
+</div>
+{% endblock %}

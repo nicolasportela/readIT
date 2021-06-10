@@ -17,7 +17,7 @@ class DBStorage:
     def __init__(self):
         """DBStorage constructor"""
         # password = environ('READITDBPASS')
-        self.__engine = create_engine('mysql+mysqldb://root:root@localhost/readIT_library')
+        self.__engine = create_engine('mysql+mysqldb://root:root@localhost/readIT_library', pool_size=50, max_overflow=0)
 
     def reload(self):
         """Load objects from database"""

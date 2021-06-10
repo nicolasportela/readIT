@@ -14,11 +14,12 @@ class Book(BaseModel, Base):
     IdBook = Column(String(40), nullable=False, primary_key=True)
     Authors = Column(String(256), nullable=False)
     Title = Column(String(256), nullable=False)
-    Description = Column(String(512), nullable=False)
+    Description = Column(String(2048), nullable=False)
     ISBN = Column(String(30))
     Status = Column(String(30), nullable=False)
     Uploaded = Column(DateTime, default=datetime.utcnow, nullable=False)
-
+    Cover = Column(String(100))
+    
     def __init__(self, **kwargs):
         """initializes book"""
         self.IdBook = str(uuid4())
