@@ -1,17 +1,20 @@
 <!-- templates/books.html -->
 
 {% extends "base.html" %}
-
 {% block content %}
-  <h3 class="title">Books</h3>
-  {% for book in books %}
-  <article>
+<h3 class="title has-text-centered">Books</h3>
+{% for row in books|batch(3) %}
+<div class="columns has-text-centered">
+  {% for book in row %}
+  <div class="column is-one-third">
     <div class="title_box">
-      <img src={{ book.Cover }}>
+      <a href="http://35.196.233.214/idbook/{{book.IdBook}}">
+	<img src={{ book.Cover }}>
+      </a>
       <h2>{{ book.Title }}</h2>
     </div>
-  </article>
+  </div>
   {% endfor %}
+</div>
+{% endfor %}
 {% endblock %}
-
-

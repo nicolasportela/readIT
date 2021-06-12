@@ -7,28 +7,31 @@ from engine import storage
 from flask_login import login_user, logout_user, login_required
 auth = Blueprint('auth', __name__)
 
-@auth.route('/signup', methods=['GET', 'POST'])
+
+@auth.route('/signup')
 def signup():
-    """Methods for Sign Up"""
-    if request.method == 'GET':
-        return render_template('signup.html')        
-    if request.method == 'POST':
-        FirstName = request.form.get('FirstName')
-        LastName = request.form.get('LastName')
-        Phone = request.form.get('Phone')
-        Email = request.form.get('Email')
-        City = request.form.get('City')
-        Password = request.form.get('Password')
-        user = storage.findEmail(Email)
-        if user: # if a user is found, we want to redirect back to signup page so user can try again
-            flash('Email address already exists')
-            return redirect(url_for('auth.signup'))
-        password = generate_password_hash(Password, method='sha256')
-        newDict = {'Email': Email, 'FirstName': FirstName, 'Password': password, 'LastName': LastName, 'City': City}
-        new_user = User(**newDict)
-        storage.new(new_user)
-        storage.save()
-        return redirect(url_for('auth.login'))
+"""Get methods for Sign Up"""
+    return render_template('signup.html')
+
+@auth.route('/signup', methods=['POST'])
+def signup_post():
+    """Post methods for Sign Up"""
+    FirstName = request.form.get('FirstName')
+    LastName = request.form.get('LastName')
+    Phone = request.form.get('Phone')
+    Email = request.form.get('Email')
+    City = request.form.get('City')
+    Password = request.form.get('Password')
+    user = storage.findEmail(Email)
+    if user: # if a user is found, we want to redirect back to signup page so user can try again
+        flash('Email address already exists')
+        return redirect(url_for('auth.signup'))
+    password = generate_password_hash(Password, method='sha256')
+    newDict = {'Email': Email, 'FirstName': FirstName, 'Password': password, 'LastName': LastName, 'City': City}
+    new_user = User(**newDict)
+    storage.new(new_user)
+    storage.save()
+    return redirect(url_for('auth.login'))
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -53,7 +56,6 @@ def login():
 @auth.route('/logout')
 @login_required
 def logout():
-    """Methods for Logout"""
     logout_user()
     return redirect(url_for('main.index'))
     

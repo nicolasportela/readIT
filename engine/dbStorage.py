@@ -4,9 +4,11 @@ from models import baseModel
 from models.users import User
 from models.books import Book
 from models.shared import Shared
+import engine
 from os import environ
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
+from decouple import config
 
 
 class DBStorage:
@@ -16,8 +18,8 @@ class DBStorage:
 
     def __init__(self):
         """DBStorage constructor"""
-        # password = environ('READITDBPASS')
-        self.__engine = create_engine('mysql+mysqldb://root:root@localhost/readIT_library', pool_size=50, max_overflow=0)
+        password = config('DBPASS')
+        self.__engine = create_engine('mysql+mysqldb://root:' + password + '@localhost/readIT_library', pool_size=50, max_overflow=0)
 
     def reload(self):
         """Load objects from database"""
@@ -45,14 +47,14 @@ class DBStorage:
             objs = self.__session.query(cls).all()
             for obj in objs:
                 key = obj.__class__.__name__ + '.' + eval('obj.{}'.format(IdObj))
-                new_dict[key] = obj.__str__()
+                new_dict[key] = obj
         else:
             for clss in classes:
                 objs = self.__session.query(classes[clss]).all()
                 for obj in objs:
                     IdObj = 'Id' + obj.__class__.__name__
                     key = obj.__class__.__name__ + '.' + eval('obj.{}'.format(IdObj))
-                    new_dict[key] = obj.__str__()
+                    new_dict[key] = obj
         return (new_dict)
 
     def findEmail(self, Email):
@@ -60,9 +62,6 @@ class DBStorage:
         if not self.__session:
             self.reload()
 
-        #for instance in self.__session.query(User).order_by(User.Email):
-           # print(instance.Email)
-        
         obj = self.__session.query(User).filter_by(Email=Email).first()
         return (obj)
 
@@ -75,8 +74,5 @@ class DBStorage:
         if not self.__session:
             self.reload()
 
-        #for instance in self.__session.query(User).order_by(User.Email):
-           # print(instance.Email)
-        
         obj = self.__session.query(User).get(IdUser)
         return (obj)

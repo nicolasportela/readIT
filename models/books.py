@@ -30,3 +30,4 @@ class Book(BaseModel, Base):
         self.Status = kwargs.get('Status')
         now = datetime.now()
         self.Uploaded = now.strftime('%Y-%m-%d %H:%M:%S')
+        self.Cover = kwargs.get('Cover')
