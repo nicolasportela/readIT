@@ -20,12 +20,14 @@ City varchar(50) NOT NULL
 -- Books table
 CREATE TABLE IF NOT EXISTS Books (
 IdBook varchar(40) NOT NULL, PRIMARY KEY(IdBook),
+IdUser varchar(40) NOT NULL, FOREIGN KEY(IdUser) REFERENCES Users(IdUser),
 Authors varchar(256) NOT NULL,
 Title varchar(256) NOT NULL,
-Description varchar(512) NOT NULL,
+Description varchar(2048) NOT NULL,
 ISBN varchar(30),
 Status varchar(30) NOT NULL,
 Uploaded DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
+Cover varchar(1024)
 );
 
 -- Shared table 
