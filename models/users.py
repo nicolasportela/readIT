@@ -6,7 +6,6 @@ from uuid import uuid4
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
 
-
 class User(UserMixin, BaseModel, Base):
     """Representation of a user """
     __tablename__ = 'Users'
@@ -30,3 +29,18 @@ class User(UserMixin, BaseModel, Base):
 
     def get_id(self):
         return (self.IdUser)
+
+    @property
+    def requested(self):
+        """ Load all book requested """
+        from engine import storage
+        allRequested = []
+        requested = storage.findRequestBook(self)
+        for elements in requested:
+            IdReceiver = elements.get('IdReceiver')
+            receiver = storage.findIdUser(IdReceiver)
+            IdBook = elements.get('IdBook')
+            book = storage.findIdBook(IdBook)
+            newDict = {'Receiver': receiver, 'Book': book}
+            allRequested.append(newDict)
+        return allRequested

@@ -4,22 +4,29 @@
 {% block content %}
 <div class="columns">
   <div class="column is-one-third">
-    <p class="title is-1">{{ book.Title }}</p>
+    <p class="title is-2">{{ book.Title }}</p>
     <p class="subtitle is-3">{{ book.Authors }}</p>
     <p>ISBN: {{ book.ISBN }}</p>
   </div>
   <div class="column"></div>
   <div class="column"></div>
+  <form method="get" action="http://35.196.233.214/books/">
+    <button class="button is-info is-medium">back</button>
+  </form>
 </div>
 <div class="columns">
   <div class="column is-one-third">
     <img src={{ book.Cover }}>
   </div>
   <div class="column is-two-thirds">
-      {{ book.Description }}
+    {{ book.Description }}
   </div>
 </div>
-<form method="get" action="http://35.196.233.214/available_books/{{book.Title}}">
+{% if current_user.is_authenticated %}
+<form method="get" action="http://35.196.233.214/availableBooks/{{book.Title}}">
   <button class="button is-block is-info is-large is-fullwidth">Select</button>
 </form>
+{% else %}
+<h6 class="title is-6 has-text-centered">For request this book, please register or login</h6>
+{% endif %}
 {% endblock %}

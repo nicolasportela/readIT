@@ -3,7 +3,7 @@
 Initialize app server
 """
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from engine import storage
 from flask_login import LoginManager
@@ -20,7 +20,7 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    from models.users import User
+    # from models.users import User
 
     @login_manager.user_loader
     def load_user(IdUser):
@@ -29,11 +29,11 @@ def create_app():
 
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint) # app_auth.py
+    app.register_blueprint(auth_blueprint)
 
     # blueprint for non-auth parts of app
     from .main import main as main_blueprint
-    app.register_blueprint(main_blueprint) # app.py
+    app.register_blueprint(main_blueprint)
 
     return app
     

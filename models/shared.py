@@ -45,11 +45,11 @@ class Shared(BaseModel, Base):
         fromx = 'readit.uy@gmail.com'
         to  = userReceiver.get('Email')
         to2 = userGiver.get('Email')
-        msg = MIMEText('Hello, {}!\n\nWe\'ve received your request of "{}".\nYou\'ll receive within 24hrs an e-mail confirmation to contact {}.\n\nThanks for being part of this book lovers community!\nreadIT Team'.format(userReceiver.get('FirstName'), book.get('Title'), userGiver.get('FirstName')))
+        msg = MIMEText('Hello, {}!\n\nWe\'ve received your request of "{}".\nYou\'ll receive within 24hrs an e-mail confirmation to contact {}.\n\nThanks for being part of this book lovers community!\n\nreadIT Team'.format(userReceiver.get('FirstName'), book, userGiver.get('FirstName')))
         msg['Subject'] = 'New book request'
         msg['From'] = fromx
         msg['To'] = to
-        msg2 = MIMEText('Hello, {}!\n\nYour book "{}" has been requested.\nPlease, check your notification area within 24hrs to confirm it and contact {} or it will be automatically cancelled otherwise.\n\nThanks for being part of this book lovers community!\nreadIT Team'.format(userGiver.get('FirstName'), book.get('Title'), userReceiver.get('FirstName')))
+        msg2 = MIMEText('Hello, {}!\n\nYour book "{}" has been requested.\nPlease, check your notification area within 24hrs to confirm it and contact {} or it will be automatically cancelled otherwise.\n\nThanks for being part of this book lovers community!\n\nreadIT Team'.format(userGiver.get('FirstName'), book, userReceiver.get('FirstName')))
         msg2['Subject'] = 'New book request'
         msg2['From'] = fromx
         msg2['To'] = to2

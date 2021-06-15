@@ -70,9 +70,44 @@ class DBStorage:
         self.__session.remove()
 
     def findIdUser(self, IdUser):
-        """ If this returns a user, then the email already exists in database """
+        """ Returns a User obj from IdUser""" 
         if not self.__session:
             self.reload()
 
         obj = self.__session.query(User).get(IdUser)
         return (obj)
+    
+    def findIdBook(self, IdBook):
+        """ Returns a User obj from IdUser""" 
+        if not self.__session:
+            self.reload()
+
+        obj = self.__session.query(Book).get(IdBook)
+        return (obj)
+    
+    def findRequestBook(self, User):
+        """ Find requested book for User """
+        if not self.__session:
+            self.reload()
+        allReceiver = []
+        S = self.__session.query(Shared)
+        for elements in S:
+            if elements.to_dict().get('IdGiver') == User.IdUser:
+                if elements.to_dict().get('StatusRequest') == "Requested":
+                    # acá estoy en la fila que tiene Requested
+                    allReceiver.append(elements.to_dict())
+        return allReceiver
+
+    def updateStatus(self, IdBook):
+        """ Updated status request in table Shared"""
+        if not self.__session:
+            self.reload()
+        S = self.__session.query(Shared)
+        for elements in S:
+            if elements.to_dict().get('IdBook') == IdBook:
+                if elements.to_dict().get('StatusRequest') == "Requested":
+                    elements.StatusRequest = "Accepted"
+                    self.save()
+        book = self.__session.query(Shared).get(IdBook)
+        book.Status = "Not Available"
+        self.save()

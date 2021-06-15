@@ -3,11 +3,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">Spread the culture!</h1>
+<h1 class="title has-text-centered">Spread the culture!</h1>
 
-<div class="column is-4 is-offset-4">
+<div class="column is-4 is-offset-4 has-text-centered">
   <h3 class="subtitle">Register your book here</h3>
+  {% if alertIsbn %}
   <h3 class="has-text-danger">{{ alertIsbn }}</h3>
+  {% elif alertIsbnOK %}
+  <h3 class="has-text-success">{{ alertIsbnOK }}</h3>
+  {% endif %}
   <h5> Please, use only numbers</h5>
   <div class="box">
     {% with messages = get_flashed_messages() %}

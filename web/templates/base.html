@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../static/images/favicon.png">
     <title>readIT - "spread the culture"</title>
     <link rel= "stylesheet" type= "text/css" href= "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.css">
   </head>
   <body>
-    <section class="hero is-link is-fullheight">
-      <div class="hero-head">
-	<nav class="navbar">
+    <section class="is-fullheight is-link">
+      <div class="head is-link">
+	<nav class="navbar is-link">
 	  <div class="navbar-brand">
 	    <a class="navbar-item" href="http://35.196.233.214">
 	      <img src="../static/images/LogoSmallHeader.png" alt="readIT logo">
@@ -22,7 +23,7 @@
 	    </a>
 	  </div>
 	  <div class="container">
-	    <div id="navbarMenuHero" class="navbar-menu">
+	    <div class="navbar-menu is-link">
 	      <div class="navbar-end">
 		<a href="{{ url_for('main.index') }}" class="navbar-item">
 		  Home
@@ -30,40 +31,50 @@
 		<a href="{{ url_for('main.books') }}" class="navbar-item">
 		  Books
 		</a>
+		<a href="{{ url_for('main.about') }}" class="navbar-item">
+		  About
+		</a>
 		{% if current_user.is_authenticated %}
-		<a href="{{ url_for('main.profile') }}" class="navbar-item">
-		  Profile
-		</a>
-		<a href="{{ url_for('main.postBook') }}" class="navbar-item">
-		  Add book
-		</a>
-		{% endif %}
-		{% if not current_user.is_authenticated %}
-		<a href="{{ url_for('auth.login') }}" class="navbar-item">
-		  Login
-		</a>
-		<a href="{{ url_for('auth.signup') }}" class="navbar-item">
-		  Sign Up
-		</a>
-		{% endif %}
-		{% if current_user.is_authenticated %}
-		<a href="{{ url_for('auth.logout') }}" class="navbar-item">
-		  Logout
-		</a>
+		<div class="navbar-item has-dropdown is-hoverable is-link">
+		  <a class="navbar-link is-primary" href="{{ url_for('main.profile') }}">
+		    Profile
+		  </a>
+		  <div class="navbar-dropdown is-primary is-boxed">
+		    {% if current_user.requested %}
+		    <a class="navbar-item is-primary" href="{{ url_for('main.requested') }}">
+		      New Request
+		    </a>
+		    {% endif %}
+		    <a class="navbar-item is-primary" href="{{ url_for('main.postBook') }}">
+		      Add book
+		    </a>
+		    <a href="{{ url_for('auth.logout') }}" class="navbar-item is-primary">
+		      Logout
+		    </a>
+		  </div>
+		</div>
 		{% endif %}
 	      </div>
+	      {% if not current_user.is_authenticated %}
+	      <a href="{{ url_for('auth.login') }}" class="navbar-item">
+		Login
+	      </a>
+	      <a href="{{ url_for('auth.signup') }}" class="navbar-item">
+		Sign Up
+	      </a>
+	      {% endif %}
 	    </div>
 	  </div>
 	</nav>
       </div>
-      <div class="hero-body">
+      <div class="body is-link">
 	<div class="container">
 	  {% block content %}
 	  {% endblock %}
 	</div>
       </div>
-      <footer class="hero-footer is-link">
-	<div class="content has-text-right">
+      <footer class="footer is-link">
+	<div class="content is-link has-text-right">
 	  <p>
 	    <strong>readIT - "Spread the culture"</strong><br>
 	    Holberton School - Montevideo Cohort #13
