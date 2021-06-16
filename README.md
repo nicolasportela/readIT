@@ -71,5 +71,7 @@ With readIT you can share a book with the community or take it. We believe this 
 
 ## 4. Documentation <a name="4"></a>
 * [Bulma](https://bulma.io/)
-
+* [Digital Ocean] (https://do.co/3gx7Kqy)
+* [Google APIs] (https://www.googleapis.com)
+* [Open Library] (https://openlibrary.org/isbn)
 <br>
