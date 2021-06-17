@@ -37,7 +37,7 @@ As a developer you only need 10 steps to run readIT locally and start using the 
 **Seventh**. Install SQLAlchemy module: `sudo pip3 install SQLAlchemy`\
 **Eighth**. Located into resources directory, in order to create database with tables, run command `cat tables.sql | mysql -uroot -p`\
 **Nineth**. Install flask: `Sudo pip install flask flask-sqlalchemy flask-login`\
-**Tenth**. Run Flask: located in readIT directory  `export FLASK_APP=web` and `run flask`.
+**Tenth**. Run Flask: located in readIT directory  `export FLASK_APP=web` and `flask run`.
 
 
 **Before starting, you must consider:**
@@ -63,6 +63,12 @@ With readIT you can share a book with the community or take it. We believe this 
 
 ## 2. Roadmap <a name="2"></a>
 
+The following features are on our road map to implement in a short, medium and long term:   
+   - Cancel registration option
+   - Users and books evaluation system (comments or score)
+   - Profile page with more details (books borrowed and lent)
+   - Website suitable for blind people
+
 ## 3. Authors <a name="3"></a>
            [Nicolás Portela](https://github.com/nicolasportela)
            [Roberto Ribeiro](https://github.com/ribeiro-uy)
@@ -74,4 +80,4 @@ With readIT you can share a book with the community or take it. We believe this 
 * [Digital Ocean] (https://do.co/3gx7Kqy)
 * [Google APIs] (https://www.googleapis.com)
 * [Open Library] (https://openlibrary.org/isbn)
-<br>
+</br>
