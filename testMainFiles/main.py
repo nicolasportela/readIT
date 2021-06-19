@@ -5,9 +5,22 @@ from models.users import User
 from models.books import Book
 
 print("Create test dictonaries...")
-eva = {'FirstName':'Eva', 'LastName':'DaughterOfGod', 'Email':'evacontacto@readIT', 'Phone':'099111222', 'Password':'Hola', 'City':'Paradise'}
-adan = {'FirstName':'Adan', 'LastName':'Son ff God', 'Email':'adancontacto@readIT', 'Phone':'099111222', 'Password':'Hola', 'City':'Paradise'} 
-book1984 = {'Authors':'George Orwell', 'Title':'1984', 'Description':'Love this novel!', 'Status':'Requested'}
+eva = {'FirstName': 'Eva',
+       'LastName': 'DaughterOfGod',
+       'Email': 'evacontacto@readIT',
+       'Phone': '099111222',
+       'Password': 'Hola',
+       'City': 'Paradise'}
+adan = {'FirstName': 'Adan',
+        'LastName': 'Son ff God',
+        'Email': 'adancontacto@readIT',
+        'Phone': '099111222',
+        'Password': 'Hola',
+        'City': 'Paradise'}
+book1984 = {'Authors': 'George Orwell',
+            'Title': '1984',
+            'Description': 'Love this novel!',
+            'Status': 'Requested'}
 
 print("Create instants User...")
 user1 = User(**eva)

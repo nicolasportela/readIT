@@ -18,7 +18,8 @@ class BaseModel:
     def __str__(self):
         """String representation of the BaseModel class"""
         Id = 'Id' + self.__class__.__name__
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, eval('self.{}'.format(Id)),
+        return "[{:s}] ({:s}) {}".format(self.__class__.__name__,
+                                         eval('self.{}'.format(Id)),
                                          self.__dict__)
 
     def to_dict(self):

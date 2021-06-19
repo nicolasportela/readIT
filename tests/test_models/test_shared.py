@@ -25,7 +25,10 @@ class TestBook(unittest.TestCase):
     def test_to_dict_values(self):
         """test that values in dict returned from to_dict are correct"""
         t_format = "%Y-%m-%dT%H:%M:%S"
-        sharedAndTaken = {'IdGiver': '02f87f75-1a2e-479c-8f97-24ded7d15045', 'IdReceiver': '3924aaa9-d7f0-4d18-94dd-d43dee975e60', 'IdBook': '6027b4f2-3dc0-4579-b70e-c8d04d825812', 'StatusRequest': 'pending'}
+        sharedAndTaken = {'IdGiver': '02f87f75-1a2e-479c-8f97-24ded7d15045',
+                          'IdReceiver': '3924aaa9-d7f0-4d18-94dd-d43dee975e60',
+                          'IdBook': '6027b4f2-3dc0-4579-b70e-c8d04d825812',
+                          'StatusRequest': 'pending'}
         s = Shared(**sharedAndTaken)
         new_d = s.to_dict()
         self.assertEqual(new_d["Class"], "Shared")

@@ -26,7 +26,11 @@ class TestBook(unittest.TestCase):
     def test_to_dict_values(self):
         """test that values in dict returned from to_dict are correct"""
         t_format = "%Y-%m-%dT%H:%M:%S"
-        book1984 = {'Authors': 'George Orwell', 'Title': '1984', 'Description': 'Love this novel!', 'ISBN': '0102030405061', 'Status': 'Requested'}
+        book1984 = {'Authors': 'George Orwell',
+                    'Title': '1984',
+                    'Description': 'Love this novel!',
+                    'ISBN': '0102030405061',
+                    'Status': 'Requested'}
         b = Book(**book1984)
         new_d = b.to_dict()
         self.assertEqual(new_d["Class"], "Book")

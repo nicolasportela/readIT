@@ -3,29 +3,28 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="columns">
-  <h1 class="title">{{ Title.Title }}</h1>
+<div class="column has-text-centered">
+  <img style="border-radius:2%"  img src={{ book.Cover }}> 
+  <h1 class="title has-text-centered">{{ book.Title }}</h1>
 </div>
 </br>
 
-<div class="column">
-  <h5 class="title is-5">Click on request buttom to get this book!</h5>
+<div class="column is-full has-text-centered">
+  <h5 class="title is-5">Click on request button to get this book!</h5>
   </br>
     </br>
   {% for user in users %}
   <div class="columns has-text-centered">
-    <div class="column">
+    <div class="column is-half">
       <h5 class="title is-5">{{ user.FirstName }}</h5>
-      <h6 class="title is-6">Mail</h6>
       <h6 class="title is-6">{{ user.City }}</h6>
     </div>
-    <div class="column has-text-centered">
-      <form method="POST" action="/profile/{{user.IdUser}}/{{Title.IdBook}}">
+    <div class="column is-half has-text-centered">
+      <form method="POST" action="/profile/{{user.IdUser}}/{{book.IdBook}}">
 	<button class="button is-block is-info is-medium">request</button>
       </form>
     </div>
   </div>
-  </br>
   {% endfor %}
 </div>
 {% endblock %}

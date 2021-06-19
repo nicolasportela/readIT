@@ -11,7 +11,7 @@
       <div class="title_box">
       <a href="http://35.196.233.214/idbook/{{book.IdBook}}">
 	<figure class="image is-128x128 is-inline-block">
-	  <img src={{ book.Cover }}>
+	  <img style="border-radius:2%" src={{ book.Cover }}>
 	</figure>
       </a>
       <div class="column">
@@ -20,9 +20,12 @@
       </div>
       <div class="column">
       </div>
-      <div class="column">
-      </div>
-      <h6 class="title is-6">{{ book.Title }}</h6>
+      </br>
+      <p>
+	"{{ book.Title }}"
+	</br>
+	by {{ book.Authors }}
+      </p>
       </div>
     </div>
     {% endfor %}

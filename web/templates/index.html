@@ -3,38 +3,78 @@
 
 {% block content %}
 <div class="column has-text-centered">
-<h1 class="title">Welcome to readIT!</h1>
-<h2 class="subtitle">The first online community for sharing books.</h2>
+  <h1 class="title">Welcome to readIT!</h1>
+  <h2 class="subtitle">The first online community for sharing books</h2>
+  </br>
+  </br>
+</div>
+
+<div class="column">
+  <h2 class="subtitle">Recently added</h2>
+</div>
+
+<!-- carousel -->
+<div id="carousel-demo" class="hero-carousel is-half">
+  {% for book in books %}
+  <div class="item-1 ml-4 mr-4">
+    <a href="http://35.196.233.214/idbook/{{book.IdBook}}">
+      <figure class="image is-3by5">
+	<img style="border-radius:2%" src={{ book.Cover }}>
+      </figure>
+      </br>
+      </br>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+<!-- carousel-end -->
 </br>
 </br>
+</br>
+<div class="column">
 </div>
 <div class="columns">
   <div class="column is-two-fifths">
-    <img src="../static/images/shareIt.png">
+    <img style="border-radius:2%" src="https://images.unsplash.com/photo-1525715843408-5c6ec44503b1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80.png">
   </div>
-  <div class="column">
-    <h4 class="title is-4">Share it</h4>
+  <div class="columns is-vcentered is-centered ml-2 mr-2">
     <div class="content is-medium">
+      <h4 class="title is-4">Share it</h4>
       <p>
-	Join our adventure of sharing culture and entertainment and enjoy meeting people with your same interests.
+	Join our adventure of sharing culture, entertainment and enjoy meeting people with your same interests.
 	Give your books a second life in the hands of those who need them.
       </p>
     </div>
   </div>
 </div>
 
+
+<div class="column">
+</div>
 <div class="columns">
-  <div class="column">
-    <h4 class="title is-4">Take it</h4>
+  <div class="columns is-vcentered is-centered ml-2 mr-2">
     <div class="content is-medium">
+      <h4 class="title is-4">Take it</h4>
       <p>
-	Reading has that magic that sets us free. It feeds our curiosity and makes us learn. Be part of this community.
+	Reading has that magic to sets us free. It feeds our curiosity, makes us learn from others and grow up. Be part of this community.
 	There is a book for you.
       </p>
     </div>
   </div>
   <div class="column is-two-fifths">
-    <img src="../static/images/takeIt.png">
+    <img style="border-radius:2%" src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80.png">
   </div>
 </div>
+<!-- carousel -->
+<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
+<script>
+  bulmaCarousel.attach('#carousel-demo', {
+  slidesToShow: 6,
+  autoplay: true,
+  autoplaySpead: 1000,
+  duration: 500,
+  loop: true
+  });
+</script>
+<!-- carousel-end -->
 {% endblock %}

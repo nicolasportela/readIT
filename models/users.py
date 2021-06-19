@@ -6,14 +6,15 @@ from uuid import uuid4
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
 
+
 class User(UserMixin, BaseModel, Base):
     """Representation of a user """
     __tablename__ = 'Users'
     IdUser = Column(String(40), nullable=False, primary_key=True)
     FirstName = Column(String(50), nullable=False)
     LastName = Column(String(50), nullable=False)
-    Phone = Column(String(30), nullable=False)
-    Email = Column(String(50), nullable=True)
+    Phone = Column(String(30), nullable=True)
+    Email = Column(String(50), nullable=False)
     Password = Column(String(512), nullable=False)
     City = Column(String(50), nullable=False)
 

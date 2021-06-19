@@ -32,8 +32,7 @@ class Shared(BaseModel, Base):
         self.Datashared = now.strftime('%Y-%m-%d %H:%M:%S')
         self.StatusRequest = kwargs.get('StatusRequest')
 
-
-    def	mailRequest(userReceiver, userGiver, book):
+    def mailRequest(userReceiver, userGiver, book):
         """send automatic email to confirm request or book already shared"""
         PASSWORD = config('PASSWORD')
         import smtplib
@@ -43,7 +42,7 @@ class Shared(BaseModel, Base):
         msg = MIMEMultipart()
         msg2 = MIMEMultipart()
         fromx = 'readit.uy@gmail.com'
-        to  = userReceiver.get('Email')
+        to = userReceiver.get('Email')
         to2 = userGiver.get('Email')
         msg = MIMEText('Hello, {}!\n\nWe\'ve received your request of "{}".\nYou\'ll receive within 24hrs an e-mail confirmation to contact {}.\n\nThanks for being part of this book lovers community!\n\nreadIT Team'.format(userReceiver.get('FirstName'), book, userGiver.get('FirstName')))
         msg['Subject'] = 'New book request'
@@ -72,7 +71,7 @@ class Shared(BaseModel, Base):
         msg = MIMEMultipart()
         msg2 = MIMEMultipart()
         fromx = 'readit.uy@gmail.com'
-        to  = userReceiver.get('Email')
+        to = userReceiver.get('Email')
         to2 = userGiver.get('Email')
 
         if status == 'confirmed':
@@ -108,4 +107,3 @@ class Shared(BaseModel, Base):
         server.sendmail(fromx, to, msg.as_string())
         server.sendmail(fromx, to2, msg2.as_string())
         server.quit()
-

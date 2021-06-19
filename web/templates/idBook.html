@@ -16,7 +16,7 @@
 </div>
 <div class="columns">
   <div class="column is-one-third">
-    <img src={{ book.Cover }}>
+    <img style="border-radius:2%"  img src={{ book.Cover }}>
   </div>
   <div class="column is-two-thirds">
     {{ book.Description }}
@@ -27,6 +27,6 @@
   <button class="button is-block is-info is-large is-fullwidth">Select</button>
 </form>
 {% else %}
-<h6 class="title is-6 has-text-centered">For request this book, please register or login</h6>
+<h6 class="title is-6 has-text-centered">To request this book, please sign up or login</h6>
 {% endif %}
 {% endblock %}
