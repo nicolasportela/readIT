@@ -70,10 +70,10 @@ The following features are on our road map to implement in a short, medium and l
    - Website suitable for blind people
 
 ## 3. Authors <a name="3"></a>
-      	   [Luciana Sarachu](https://github.com/luciana-sarachu)	
-      	   [Nicolás Portela](https://github.com/nicolasportela)
-           [Roberto Ribeiro](https://github.com/ribeiro-uy)
-           [Sebastián Olmos](https://github.com/sebastian-olmos)
+   [Luciana Sarachu](https://github.com/luciana-sarachu)
+   [Nicolás Portela](https://github.com/nicolasportela)
+   [Roberto Ribeiro](https://github.com/ribeiro-uy)
+   [Sebastián Olmos](https://github.com/sebastian-olmos)
 
 
 ## 4. Documentation <a name="4"></a>
