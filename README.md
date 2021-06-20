@@ -56,10 +56,10 @@ With readIT you can share a book with the community or take it. We believe this 
 * `/Profile`: Options for users, including add a book, accept or confirm request, and Logout.
 
 ### iv. Examples <a name="14"></a>
-
+![readIT Preview](https://i.imgur.com/nNdilzd.jpg)
 
 ### v. Demo <a name="15"></a>
-
+[![readIT Demo](https://lh3.googleusercontent.com/pw/ACtC-3ejrphnMJ9rzNUVoOf9Hf83tpynsSYMg3RqoTqf8OwlyDEyUe93jKSwxVgo0Tzpykrk8JI5LpYwwJ0PJJnputa_-CwQFMiVbrocqNLUkFLSfd02uRTDP3uR0rZsHzbOzgx5RX-_Lt1bgjWZUO7Sbvg=w1280-h720-no?authuser=0)](https://youtu.be/EZbmrCQOGHA)
 
 ## 2. Roadmap <a name="2"></a>
 
@@ -70,14 +70,15 @@ The following features are on our road map to implement in a short, medium and l
    - Website suitable for blind people
 
 ## 3. Authors <a name="3"></a>
-           [Nicolás Portela](https://github.com/nicolasportela)
+      	   [Luciana Sarachu](https://github.com/luciana-sarachu)	
+      	   [Nicolás Portela](https://github.com/nicolasportela)
            [Roberto Ribeiro](https://github.com/ribeiro-uy)
-           [Sebastián Olmos](https://github.com/olmoshbtn)
-           [Luciana Sarachu](https://github.com/luciana-sarachu)
+           [Sebastián Olmos](https://github.com/sebastian-olmos)
+
 
 ## 4. Documentation <a name="4"></a>
 * [Bulma](https://bulma.io/)
-* [Digital Ocean] (https://do.co/3gx7Kqy)
-* [Google APIs] (https://www.googleapis.com)
-* [Open Library] (https://openlibrary.org/isbn)
+* [Digital Ocean](https://do.co/3gx7Kqy)
+* [Google APIs](https://www.googleapis.com)
+* [Open Library](https://openlibrary.org/isbn)
 </br>

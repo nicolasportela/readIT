@@ -4,8 +4,9 @@
 {% block content %}
 
 <div class="column has-text-centered">
-  <img style="border-radius:2%"  img src={{ book.Cover }}> 
+  <img style="border-radius:2%" src={{ book.Cover }}> 
   <h1 class="title has-text-centered">{{ book.Title }}</h1>
+  <h2 class="subtitle has-text-centered">{{ book.Authors }}</h2>
 </div>
 </br>
 
@@ -14,12 +15,12 @@
   </br>
     </br>
   {% for user in users %}
-  <div class="columns has-text-centered">
-    <div class="column is-half">
+  <div class="columns">
+    <div class="column is-half has-text-right">
       <h5 class="title is-5">{{ user.FirstName }}</h5>
-      <h6 class="title is-6">{{ user.City }}</h6>
+      <h6 class="subtitle">{{ user.City }}</h6>
     </div>
-    <div class="column is-half has-text-centered">
+    <div class="column is-half has-text-left">
       <form method="POST" action="/profile/{{user.IdUser}}/{{book.IdBook}}">
 	<button class="button is-block is-info is-medium">request</button>
       </form>

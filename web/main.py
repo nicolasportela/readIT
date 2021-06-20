@@ -8,6 +8,7 @@ from models.books import Book
 from models.users import User
 from models.shared import Shared
 import requests
+import re
 main = Blueprint('main', __name__)
 
 
@@ -19,6 +20,26 @@ def index():
     books = storage.all(Book).values()
     books = sorted(books, key=lambda k: k.Uploaded)
     books.reverse()
+
+    browser = request.user_agent.browser
+    version = request.user_agent.version and int(request.user_agent.version.split('.')[0])
+    platform = request.user_agent.platform
+    uas = request.user_agent.string
+    mobile = False
+
+    if browser and version:
+        if (browser == 'msie' and version < 9) \
+           or (browser == 'firefox' and version < 4) \
+           or (platform == 'android' and browser == 'safari' and version < 534) \
+           or (platform == 'iphone' and browser == 'safari' and version < 7000) \
+           or ((platform == 'macos' or platform == 'windows') and browser == 'safari' and not re.search('Mobile', uas) and version < 534) \
+           or (re.search('iPad', uas) and browser == 'safari' and version < 7000) \
+           or (platform == 'windows' and re.search('Windows Phone OS', uas)) \
+           or (browser == 'opera') \
+           or (platform == 'android' and browser == 'chrome') \
+           or (re.search('BlackBerry', uas)):
+            mobile = True
+
     # <!-- carousel-end (sacar el books de los parametros -->
     # return render_template('index.html', books=books[:12])
     booksNotMine = []
@@ -26,11 +47,17 @@ def index():
         for book in books:
             if getattr(book, 'IdUser') != current_user.IdUser:
                 booksNotMine.append(book)
-            elif getattr(book, 'Status') == "Not Available":
+            if getattr(book, 'Status') == "Not Available":
                 booksNotMine.append(book)
-        return render_template('index.html', books=booksNotMine[:12])
+        if mobile:
+            return render_template('index.html')
+        else:
+            return render_template('index.html', books=booksNotMine[:12])
     else:
-        return render_template('index.html', books=books[:12])
+        if mobile:
+            return render_template('index.html')
+        else:
+            return render_template('index.html', books=books[:12])
 
 
 @main.route('/about')
@@ -54,8 +81,17 @@ def requested(IdUser=None, IdBook=None):
                                 book.to_dict(),
                                 status="confirmed")
         storage.updateStatus(book.to_dict().get('IdBook'))
-        return render_template('requested.html', msg="Thanks for  sharing!")
+        msg = "Thanks for  sharing!"
+        return redirect(url_for('main.thanksForSharing',
+                                msg=msg,
+                                name=current_user.FirstName))
 
+@main.route('/thanksForSharing', methods=['GET'])
+@login_required
+def thanksForSharing():
+    name = request.args['name']
+    msg = request.args['msg']
+    return render_template('thanksForSharing.html', msg=msg)
 
 @main.route('/profile/<IdUser>/<IdBook>', methods=['POST'])
 @main.route('/profile', methods=['GET'])
@@ -63,8 +99,10 @@ def requested(IdUser=None, IdBook=None):
 def profile(IdUser=None, IdBook=None):
     """ Methods for profile """
     if request.method == 'GET':
+        print(current_user)
         return render_template('profile.html', name=current_user.FirstName)
     if request.method == 'POST':
+        print(current_user.to_dict())
         book = ""
         userGiver = storage.findIdUser(IdUser)
         books = storage.all(Book)

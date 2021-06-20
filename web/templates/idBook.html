@@ -3,22 +3,22 @@
 
 {% block content %}
 <div class="columns">
-  <div class="column is-one-third">
+  <div class="column is-four-fifths">
     <p class="title is-2">{{ book.Title }}</p>
     <p class="subtitle is-3">{{ book.Authors }}</p>
     <p>ISBN: {{ book.ISBN }}</p>
   </div>
-  <div class="column"></div>
-  <div class="column"></div>
-  <form method="get" action="http://35.196.233.214/books/">
+  <div class="column is-one-fifth has-text-right">
+    <form method="get" action="http://35.196.233.214/books/">
     <button class="button is-info is-medium">back</button>
   </form>
+  </div>
 </div>
 <div class="columns">
-  <div class="column is-one-third">
+  <div class="column is-one-fifth">
     <img style="border-radius:2%"  img src={{ book.Cover }}>
   </div>
-  <div class="column is-two-thirds">
+  <div class="column is-four-fifths has-text-justified">
     {{ book.Description }}
   </div>
 </div>

@@ -1,33 +1,23 @@
-<!-- templates/profile.html -->
+<!-- templates/requested.html -->
 
 {% extends "base.html" %}
 {% block content %}
-{% if msg %}
-<div class="column has-text-centered">
-  <h1 class="title">{{ name }}</h1>
-  <h1 class="title">{{ msg }}!</h1>
-</div>
-{% else %}
-<div class="column has-text-centered">
-  {% if current_user.requested %}
-  <div class="column">
-    <h5 class="title is-5">Confirm Requested</h5>
-    {% for request in current_user.requested %}
-    <div class="columns has-text-centered">
-      <div class="column">
-	<h6 class="title is-6">Book: {{ request.Book.Title }}</h6>
-	<h6 class="title is-6">Requester:{{ request.Receiver.FirstName }}</h6>
-	<h6 class="title is-6">Contact: {{ request.Receiver.Email }}</h6>
-      </div>
-      <div class="column has-text-centered">
-	<form method="POST" action="/requested/{{request.Receiver.IdUser}}/{{request.Book.IdBook}}">
-	  <button class="button is-block is-info is-medium">confirm</button>
-	</form>
-      </div>
+<div class="column is-full has-text-centered">
+  <h5 class="title is-5">Confirm Requested</h5>
+  <br>
+  <br>
+  {% for request in current_user.requested %}
+  <div class="columns">
+    <div class="column is-half has-text-right">
+      <h5 class="title is-5">Book: {{ request.Book.Title }}</h5>
+      <h6 class="subtitle">Requester: {{ request.Receiver.FirstName }}</h6>
     </div>
-    {% endfor %}
-    {% endif %}
+    <div class="column is-half has-text-left">
+      <form method="POST" action="/requested/{{request.Receiver.IdUser}}/{{request.Book.IdBook}}">
+	<button class="button is-block is-info is-medium">confirm</button>
+      </form>
+    </div>
   </div>
-  {% endif %}
+  {% endfor %}
 </div>
 {% endblock %}

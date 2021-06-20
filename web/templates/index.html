@@ -6,11 +6,11 @@
   <h1 class="title">Welcome to readIT!</h1>
   <h2 class="subtitle">The first online community for sharing books</h2>
   </br>
-  </br>
 </div>
 
+{% if books %}
 <div class="column">
-  <h2 class="subtitle">Recently added</h2>
+  <h6 class="subtitle is-6">Recently added</h6>
 </div>
 
 <!-- carousel -->
@@ -28,6 +28,7 @@
   {% endfor %}
 </div>
 <!-- carousel-end -->
+{% endif %}
 </br>
 </br>
 </br>
